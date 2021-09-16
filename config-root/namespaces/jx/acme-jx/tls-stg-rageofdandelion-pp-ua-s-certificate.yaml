@@ -1,0 +1,20 @@
+# Source: acme/templates/cert-manager-staging-certificate.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "tls-stg-rageofdandelion-pp-ua-s"
+  labels:
+    jenkins.io/letsencrypt-service: staging
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  annotations:
+    meta.helm.sh/release-name: 'acme-jx'
+  namespace: jx
+spec:
+  secretName: "tls-stg-rageofdandelion-pp-ua-s"
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: "*.stg.rageofdandelion.pp.ua"
+  dnsNames:
+    - "*.stg.rageofdandelion.pp.ua"
+    - "stg.rageofdandelion.pp.ua"
